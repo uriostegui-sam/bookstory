@@ -1,0 +1,53 @@
+App\Entity\Utilisateur:
+  utilisateur:
+    email: "user@mail.com"
+    roles: ["ROLE_USER"]
+    password: \$2y\$13\$5tT4jRAoaz3errpoY.byXOWZNaZxGODH6CkIukdhnGZWcJM9eQS1e
+
+  utilisateur{2..50}:
+    email: "<safeEmail()>"
+    roles: ["ROLE_USER"]
+    password: \$2y\$13\$5tT4jRAoaz3errpoY.byXOWZNaZxGODH6CkIukdhnGZWcJM9eQS1e
+
+  utilisateur_admin:
+    email: "admin@mail.com"
+    roles: ["ROLE_ADMIN"]
+    password: \$2y\$13\$RjRNF5QRRTdZXWSOMs7O3uxNK3LbJFRLy/P/IDafkSoQWlem21d3m
+
+App\Entity\Categorie:
+  categorie1:
+    titre: "Science Fiction"
+  categorie2:
+    titre: "Histoire"
+  categorie3:
+    titre: "Policier"
+  categorie4:
+    titre: "Fantaisie"
+  categorie5:
+    titre: "Littérature"
+  categorie6:
+    titre: "Poésie"
+  categorie7:
+    titre: "Biographie"
+  categorie8:
+    titre: "Politique"
+  categorie9:
+    titre: "Science"
+
+App\Entity\Livre:
+  livre{1..100}:
+    categorie: "@categorie*"
+    revendeur: "@utilisateur*"
+    titre: "<word()> <word()>"
+    description: "<text()>"
+    image: "<imageUrl()>"
+    dateCreation: "<dateTimeBetween('-1 week', '+1 week')>"
+    prix: "<numberBetween(15, 80)>"
+    dateMiseAJour: "<dateTimeBetween('-1 week', '+1 week')>"
+    auteur: "@auteur*"
+
+App\Entity\Auteur:
+  auteur{1..100}:
+    nom: "<lastName()>"
+    prenom: "<firstName()>"
+    description: "<paragraph(2)>"
