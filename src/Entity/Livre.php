@@ -32,15 +32,7 @@ class Livre
      */
     private $image;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateCreation;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateMiseAJour;
 
     /**
      * @ORM\Column(type="float")
@@ -64,6 +56,16 @@ class Livre
      * @ORM\JoinColumn(nullable=false)
      */
     private $revendeur;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateMiseAJour;
 
     public function getId(): ?int
     {
@@ -102,30 +104,6 @@ class Livre
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    public function getDateMiseAJour(): ?\DateTimeInterface
-    {
-        return $this->dateMiseAJour;
-    }
-
-    public function setDateMiseAJour(\DateTimeInterface $dateMiseAJour): self
-    {
-        $this->dateMiseAJour = $dateMiseAJour;
 
         return $this;
     }
@@ -174,6 +152,30 @@ class Livre
     public function setRevendeur(?Utilisateur $revendeur): self
     {
         $this->revendeur = $revendeur;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    public function getDateMiseAJour(): ?\DateTimeInterface
+    {
+        return $this->dateMiseAJour;
+    }
+
+    public function setDateMiseAJour(\DateTimeInterface $dateMiseAJour): self
+    {
+        $this->dateMiseAJour = $dateMiseAJour;
 
         return $this;
     }
