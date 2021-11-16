@@ -19,6 +19,16 @@ class AuteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Auteur::class);
     }
 
+    public function findLast(int $number = 10): array
+    {
+        return $this->createQueryBuilder('auteur')
+            ->orderBy('auteur.id', 'DESC')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Auteur[] Returns an array of Auteur objects
     //  */

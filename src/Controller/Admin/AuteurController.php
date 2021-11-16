@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Auteur;
-use App\Form\Auteur1Type;
+use App\Form\AuteurType;
 use App\Repository\AuteurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +32,7 @@ class AuteurController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $auteur = new Auteur();
-        $form = $this->createForm(Auteur1Type::class, $auteur);
+        $form = $this->createForm(AuteurType::class, $auteur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class AuteurController extends AbstractController
      */
     public function edit(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Auteur1Type::class, $auteur);
+        $form = $this->createForm(AuteurType::class, $auteur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +83,7 @@ class AuteurController extends AbstractController
      */
     public function delete(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$auteur->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $auteur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($auteur);
             $entityManager->flush();
         }

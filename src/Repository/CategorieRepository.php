@@ -19,6 +19,15 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    public function findLast(int $number = 10): array
+    {
+        return $this->createQueryBuilder('categorie')
+            ->orderBy('categorie.id', 'DESC')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */

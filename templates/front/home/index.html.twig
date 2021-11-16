@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome:)
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+	{% block header %}{% endblock %}
+	{% block main %}
+		<h1>Bienvenue</h1>
+
+
+		<h2>Les derniers livres</h2>
+
+		<div>
+			<ol>
+				{% for livre in livres %}
+					<li>
+						<a href="{{ path('front_auteur_show', {'id' : livre.id }) }}">
+							<p>{{ livre.titre }}</p>
+						</a>
+						<p>{{ livre.description }}</p>
+						<p>{{ livre.prix }}
+							€</p>
+
+					</li>
+				{% endfor %}
+			</ol>
+		</div>
+
+		<h2>Les derniers auteurs</h2>
+
+		<ol>
+			{% for auteur in auteurs %}
+				<li>
+					<p>
+						<a href="{{ path('front_auteur_show', {'id' : auteur.id }) }}">{{ auteur.prenom }}
+							{{ auteur.nom }}</a>
+					</p>
+					<p>{{ auteur.description }}</p>
+				</li>
+
+			{% endfor %}
+		</ol>
+
+		<h2>Les dernieres catégories</h2>
+		<ol>
+			{% for categorie in categories %}
+				<li>
+					<p>
+						<a href="{{ path('front_categorie_show', {'id' : categorie.id }) }}">{{ categorie.titre }}</a>
+					</p>
+				</li>
+			{% endfor %}
+		</ol>
+		<hr>
+
+		<div>
+			<h3>
+				<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
+			</h3>
+
+			<h3>
+				<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+			</h3>
+			<h3>
+				<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+			</h3>
+		</div>
+		<div>
+
+
+		{% endblock %}
+	{% endblock %}

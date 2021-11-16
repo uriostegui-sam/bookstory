@@ -3,17 +3,12 @@
 namespace App\Controller\Front;
 
 use App\Entity\Auteur;
-use App\Form\Auteur2Type;
 use App\Repository\AuteurRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/front/auteur")
- */
+
 class AuteurController extends AbstractController
 {
     /**
@@ -27,7 +22,7 @@ class AuteurController extends AbstractController
     }
 
     /**
-     * @Route("/auteurs/{id}", name="front_auteur_show", methods={"GET"})
+     * @Route("/auteur/{id}", name="front_auteur_show", methods={"GET"})
      */
     public function show(Auteur $auteur): Response
     {

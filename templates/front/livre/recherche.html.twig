@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index
+{% endblock %}
+
+{% block main %}
+
+	{{ form(form)}}
+
+
+	</div>
+	<ol>
+		{% for livre in livres %}
+			<li>
+				<h3>
+					{{livre.titre}}
+				</h3>
+				<p>{{livre.description}}</p>
+				<h4>{{livre.prix}}
+					€</h4>
+				<h4>{{livre.auteur.nom}}</h4>
+
+				<h4>{{livre.categorie.titre}}</h4>
+				<hr>
+
+			</li>
+		{% endfor %}
+	</ol>
+	<h3>
+		<a href="{{ path('front_home') }}">Retourner à Home</a>
+	</h3>
+{% endblock %}

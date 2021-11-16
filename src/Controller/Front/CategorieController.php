@@ -3,11 +3,8 @@
 namespace App\Controller\Front;
 
 use App\Entity\Categorie;
-use App\Form\Categorie1Type;
 use App\Repository\CategorieRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
