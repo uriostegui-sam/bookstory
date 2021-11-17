@@ -25,7 +25,7 @@
 					<td>{{ livre.id }}</td>
 					<td>{{ livre.titre }}</td>
 					<td>{{ livre.description }}</td>
-					<td>{{ livre.image }}</td>
+					<img src="{{ path('front_livre_show', {'id': livre.image}) }}" alt="{{ livre.titre }}">
 					<td>{{ livre.prix }}</td>
 					<td>{{ livre.dateCreation ? livre.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</td>

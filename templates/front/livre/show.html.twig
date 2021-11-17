@@ -22,7 +22,14 @@
 			</tr>
 			<tr>
 				<th>Image</th>
-				<td>{{ livre.image }}</td>
+				<img src={{ livre.image }} alt="{{ livre.titre }}">
+			</tr>
+			<tr>
+				<th>Auteur</th>
+				<td>
+					{{ livre.auteur.nom }}
+					{{ livre.auteur.prenom }}
+				</td>
 			</tr>
 			<tr>
 				<th>Prix</th>

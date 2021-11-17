@@ -61,8 +61,8 @@ class SearchLivreCriteriaType extends AbstractType
             ->add('direction', ChoiceType::class, [
                 'label' => 'Sens du trie :',
                 'choices' => [
-                    'Date de mise à jour' => 'dateMiseAJour',
-                    'Prix' => 'prix'
+                    'Croissant' => 'ASC',
+                    'Decroissant' => 'DESC'
                 ]
             ])
             ->add('submit', SubmitType::class, [

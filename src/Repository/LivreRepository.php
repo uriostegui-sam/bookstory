@@ -45,13 +45,13 @@ class LivreRepository extends ServiceEntityRepository
 
         if ($criteria->minPrix) {
             $queryBuilder = $queryBuilder
-                ->andWhere('livre.prix >= :minPrice')
-                ->setParameter('prix', $criteria->minPrix);
+                ->andWhere('livre.prix >= :minPrix')
+                ->setParameter('minPrix', $criteria->minPrix);
         }
         if ($criteria->maxPrix) {
             $queryBuilder = $queryBuilder
                 ->andWhere('livre.prix <= :maxPrix')
-                ->setParameter('prix', $criteria->minPrix);
+                ->setParameter('maxPrix', $criteria->minPrix);
         }
         if ($criteria->auteur) {
             $queryBuilder = $queryBuilder

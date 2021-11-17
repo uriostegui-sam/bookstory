@@ -27,13 +27,12 @@
 			<ol>
 				{% for livre in livres %}
 					<li>
-						<a href="{{ path('front_auteur_show', {'id' : livre.id }) }}">
+						<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
 							<p>{{ livre.titre }}</p>
 						</a>
 						<p>{{ livre.description }}</p>
 						<p>{{ livre.prix }}
 							€</p>
-
 					</li>
 				{% endfor %}
 			</ol>
@@ -72,7 +71,7 @@
 			</h3>
 
 			<h3>
-				<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+				<a href="{{ path('rechercher') }} ">Liste de Categories</a>
 			</h3>
 			<h3>
 				<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
