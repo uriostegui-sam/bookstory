@@ -1,22 +1,14 @@
-<a class="thumb book" href="{{ path('app_front_book_show', { id: book.id, slug: book.slug }) }}">
-	<img src="{{ book.image }}" alt="{{ book.title }}"/>
-	<p>{{ book.title }}</p>
-	<p>{{ book.shortDescription }}</p>
+<a class="thumb livre" href="{{ path('app_front_livre_show', { id: livre.id, slug: livre.slug }) }}">
+	<img src="{{ livre.image }}" alt="{{ livre.titre }}"/>
+	<p>{{ livre.titre }}</p>
+	<p>{{ livre.shortDescription }}</p>
 	<p>Prix :
-		{{ book.price }}
+		{{ livre.price }}
 		€</p>
 	<p>
 		Revendeur :
-		<a href="{{ path('app_front_user_showDealer', { id: book.dealer.id }) }}">
-			{{ book.dealer.fullName }}
+		<a href="{{ path('app_front_user_showDealer', { id: livre.dealer.id }) }}">
+			{{ livre.dealer.fullName }}
 		</a>
 	</p>
-	{% if app.user and app.user.id == book.dealer.id %}
-		<p>
-			<a href="{{ path('app_front_book_modify', { id: book.id, slug: book.slug }) }}">Modifier mon livre</a>
-		</p>
-		<p>
-			<a href="{{ path('app_front_book_delete', { id: book.id }) }}">Supprimer mon livre</a>
-		</p>
-	{% endif %}
 </a>

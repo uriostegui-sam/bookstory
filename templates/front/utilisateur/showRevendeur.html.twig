@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Revendeur
+{% endblock %}
+
+{% block body %}
+	<h1>Profile revendeur</h1>
+
+	<h2>{{ revendeur.prenom }}
+		{{ revendeur.nom }}</h2>
+	<br>
+	<h3>
+		<a href="{{ path('front_home') }}">Retourner à Home</a>
+	</h3>
+	<br>
+	<h1>Ses dernier livres</h1>
+
+	{% for livre in revendeur.livres %}
+
+		<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
+			<h1>{{ livre.titre }}</h1>
+		</a>
+		<p>{{ livre.description }}</p>
+		<img src={{ livre.image }} alt="{{ livre.titre }}">
+
+		<h2>Auteur</h2>
+		<h2>
+			<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
+				{{ livre.auteur.prenom }}</a>
+		</h2>
+		<h3>
+			<a href="{{ path('rechercher') }}">Categorie :
+				{{ livre.categorie.titre }}</a>
+		</h3>
+
+		<h4>{{ livre.prix }}
+			€</h4>
+		<hr>
+	{% endfor %}
+{% endblock %}

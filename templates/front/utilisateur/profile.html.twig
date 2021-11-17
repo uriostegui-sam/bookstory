@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index
+{% endblock %}
+
+{% block body %}
+	<h1>Mon Profile :)</h1>
+
+	<h2>Email :
+		{{ app.user.email }}</h2>
+	<h3>Nom :
+		{{ app.user.nom }}</h3>
+	<h3>Prenom :
+		{{ app.user.prenom }}</h3>
+	<br>
+	<h1>Vos livres :</h1>
+
+	{% if app.user.livres.count == 0 %}
+		<p>Vous n'avez pas encore de livre(s) à revendre</p>
+	{% else %}
+		{% for livre in app.user.livres %}
+			<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
+				<h2>{{ livre.titre }}</h2>
+			</a>
+			<p>{{ livre.description }}</p>
+			<img src={{ livre.image }} alt="{{ livre.titre }}">
+
+			<h2>Auteur</h2>
+			<h2>
+				<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
+					{{ livre.auteur.prenom }}</a>
+			</h2>
+			<h3>
+				<a href="{{ path('rechercher') }}">Categorie :
+					{{ livre.categorie.titre }}</a>
+			</h3>
+
+			<h4>{{ livre.prix }}
+				€</h4>
+			<hr>
+		{% endfor %}
+	{% endif %}
+{% endblock %}
