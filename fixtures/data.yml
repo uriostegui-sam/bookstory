@@ -2,17 +2,17 @@ App\Entity\Utilisateur:
   utilisateur:
     email: "user@mail.com"
     roles: ["ROLE_USER"]
-    password: \$2y\$13\$5tT4jRAoaz3errpoY.byXOWZNaZxGODH6CkIukdhnGZWcJM9eQS1e
+    password: \$2y\$13\$iWWrvdRzQnoRG1.BruYZYuRVeSFW4cLpQl6yW/AVormAxTs69yAYa
 
   utilisateur{2..50}:
     email: "<safeEmail()>"
     roles: ["ROLE_USER"]
-    password: \$2y\$13\$5tT4jRAoaz3errpoY.byXOWZNaZxGODH6CkIukdhnGZWcJM9eQS1e
+    password: \$2y\$13\$iWWrvdRzQnoRG1.BruYZYuRVeSFW4cLpQl6yW/AVormAxTs69yAYa
 
   utilisateur_admin:
     email: "admin@mail.com"
     roles: ["ROLE_ADMIN"]
-    password: \$2y\$13\$RjRNF5QRRTdZXWSOMs7O3uxNK3LbJFRLy/P/IDafkSoQWlem21d3m
+    password: \$2y\$13\$ew/AwqL1kVZDJpLw79C6p.bKKWVnvpVpSHbgfgY1va3pKA2nJuKgW
 
 App\Entity\Categorie:
   categorie1:
