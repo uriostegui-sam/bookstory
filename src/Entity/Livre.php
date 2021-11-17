@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\LivreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LivreRepository;
+use Gedmo\Mapping\Annotation\Timestampable;
 
 /**
  * @ORM\Entity(repositoryClass=LivreRepository::class)
@@ -59,11 +60,13 @@ class Livre
 
     /**
      * @ORM\Column(type="datetime")
+     * @Timestampable(on="create")
      */
     private $dateCreation;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Timestampable(on="update")
      */
     private $dateMiseAJour;
 

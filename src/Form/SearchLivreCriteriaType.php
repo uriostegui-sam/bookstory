@@ -50,7 +50,7 @@ class SearchLivreCriteriaType extends AbstractType
             ->add('orderBy', ChoiceType::class, [
                 'label' => 'Trier par :',
                 'choices' => [
-                    'Titre' => 'title',
+                    'Titre' => 'titre',
                     'Auteur' => 'auteur',
                     'Revendeur' => 'revendeur',
                     'Prix Minimum' => 'minPrix',
