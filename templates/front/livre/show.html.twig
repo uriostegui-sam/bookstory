@@ -4,48 +4,47 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Livre</h1>
+	<center>
+		<h1>Livre</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ livre.id }}</td>
-			</tr>
-			<tr>
-				<th>Titre</th>
-				<td>{{ livre.titre }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ livre.description }}</td>
-			</tr>
-			<tr>
-				<th>Image</th>
-				<img src={{ livre.image }} alt="{{ livre.titre }}">
-			</tr>
-			<tr>
-				<th>Auteur</th>
-				<td>
-					{{ livre.auteur.nom }}
-					{{ livre.auteur.prenom }}
-				</td>
-			</tr>
-			<tr>
-				<th>Prix</th>
-				<td>{{ livre.prix }}</td>
-			</tr>
-			<tr>
-				<th>DateCreation</th>
-				<td>{{ livre.dateCreation ? livre.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>DateMiseAJour</th>
-				<td>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
+			<h1>{{ livre.titre }}</h1>
+		</a>
+		<p>{{ livre.description }}</p>
+		<img src={{ livre.image }} alt="{{ livre.titre }}">
 
-	<a href="{{ path('front_livre_index') }}">back to list</a>
+		<h2>Auteur</h2>
+		<h2>
+			<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
+				{{ livre.auteur.prenom }}</a>
+		</h2>
+		<h3>
+			<a href="{{ path('rechercher') }}">Categorie :
+				{{ livre.categorie.titre }}</a>
+		</h3>
 
+		<h4>{{ livre.prix }}
+			€</h4>
+		<h3>Revendeur:</h3>
+		<h4>
+			<a href="{{ path('utilisateur_show', {'id': livre.revendeur.id}) }}">{{ livre.revendeur.email }}</a>
+		</h4>
+		<h5>Date de la dernier mise a jour :</h5>
+		<h5>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</h5>
+		<br>
+
+
+		<div>
+			<h3>
+				<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
+			</h3>
+
+			<h3>
+				<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+			</h3>
+			<h3>
+				<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+			</h3>
+		</div>
+	</center>
 {% endblock %}

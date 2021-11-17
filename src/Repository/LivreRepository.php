@@ -68,7 +68,7 @@ class LivreRepository extends ServiceEntityRepository
         if ($criteria->revendeur) {
             $queryBuilder = $queryBuilder
                 ->leftJoin('livre.revendeur', 'revendeur')
-                ->andWhere('revendeur.email LIKE :dealer')
+                ->andWhere('revendeur.email LIKE :revendeur')
                 ->setParameter('revendeur', "%{$criteria->revendeur}%");
         }
 

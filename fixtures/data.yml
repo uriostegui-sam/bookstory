@@ -3,13 +3,19 @@ App\Entity\Utilisateur:
     email: "user@mail.com"
     roles: ["ROLE_USER"]
     password: \$2y\$13\$iWWrvdRzQnoRG1.BruYZYuRVeSFW4cLpQl6yW/AVormAxTs69yAYa
+    nom: "Machi"
+    prenom: "William"
 
   utilisateur{2..50}:
+    nom: "<lastName()>"
+    prenom: "<firstName()>"
     email: "<safeEmail()>"
     roles: ["ROLE_USER"]
     password: \$2y\$13\$iWWrvdRzQnoRG1.BruYZYuRVeSFW4cLpQl6yW/AVormAxTs69yAYa
 
   utilisateur_admin:
+    nom: "UV"
+    prenom: "Sam"
     email: "admin@mail.com"
     roles: ["ROLE_ADMIN"]
     password: \$2y\$13\$ew/AwqL1kVZDJpLw79C6p.bKKWVnvpVpSHbgfgY1va3pKA2nJuKgW

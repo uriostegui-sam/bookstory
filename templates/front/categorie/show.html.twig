@@ -5,20 +5,33 @@
 
 {% block body %}
 	<h1>Categorie</h1>
+	<br>
+	<h2>{{ categorie.titre }}</h2>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ categorie.id }}</td>
-			</tr>
-			<tr>
-				<th>Titre</th>
-				<td>{{ categorie.titre }}</td>
-			</tr>
-		</tbody>
-	</table>
+	{% for livre in categorie.livres %}
+		<div>
+			<h3>{{ livre.titre }}</h3>
+			<h3>
+				<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
+					{{ livre.auteur.prenom }}</a>
+			</h3>
+			<h4>
+				{{ livre.prix}}
+				€
+			</h4>
+			<hr>
+		{% endfor %}
 
-	<a href="{{ path('front_categorie_index') }}">back to list</a>
+		<div>
+			<h3>
+				<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
+			</h3>
 
-{% endblock %}
+			<h3>
+				<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+			</h3>
+			<h3>
+				<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+			</h3>
+		</div>
+	{% endblock %}
