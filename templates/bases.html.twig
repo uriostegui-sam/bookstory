@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		{% block stylesheets %}
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 		{% endblock %}
 		<title>
 			{% block title %}Rebrary!
@@ -18,7 +18,7 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body>
+	<body class="container">
 		{% block body %}
 			<header>
 				{% block header %}{% endblock %}
@@ -26,7 +26,24 @@
 			<main>
 				{% block main %}{% endblock %}
 			</main>
-		{% endblock %}
+			<footer>
+				{% block footer %}
+					<div class="d-flex justify-content-around">
+						<h3>
+							<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
+						</h3>
 
+						<h3>
+							<a href="{{ path('rechercher') }} ">Liste de Categories</a>
+						</h3>
+						<h3>
+							<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+						</h3>
+					</div>
+					<div>
+					{% endblock %}
+				</footer>
+			{% endblock %}
+		</body>
 	</body>
 </html>

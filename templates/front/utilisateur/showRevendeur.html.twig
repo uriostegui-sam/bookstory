@@ -4,37 +4,31 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Profile revendeur</h1>
 
-	<h2>{{ revendeur.prenom }}
-		{{ revendeur.nom }}</h2>
-	<br>
-	<h3>
-		<a href="{{ path('front_home') }}">Retourner à Home</a>
-	</h3>
-	<br>
-	<h1>Ses dernier livres</h1>
+	<h1>Profile revendeur :
+		{{ revendeur.prenom }}
+		{{ revendeur.nom }}</h1>
+	<h3>{{ revendeur.email }}</h3>
+	<div class="d-flex flex-wrap justify-content-around">
+		{% for livre in revendeur.livres %}
+			<div class="card mb-4 text-center" style="width: 18rem;">
+				<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
+				<div class="card-body">
 
-	{% for livre in revendeur.livres %}
+					<h2 class="card-title">
+						<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
+					</h2>
+					<h3 class="card-text">{{ livre.auteur.nom }}
+						{{ livre.auteur.prenom }}</h3>
 
-		<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
-			<h1>{{ livre.titre }}</h1>
-		</a>
-		<p>{{ livre.description }}</p>
-		<img src={{ livre.image }} alt="{{ livre.titre }}">
+					<p class="card-text text-justify">{{ livre.description }}</p>
+					<p class="card-text">{{ livre.prix }}
+						€</p>
+					<p class="card-text">{{ livre.categorie.titre }}</p>
 
-		<h2>Auteur</h2>
-		<h2>
-			<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
-				{{ livre.auteur.prenom }}</a>
-		</h2>
-		<h3>
-			<a href="{{ path('rechercher') }}">Categorie :
-				{{ livre.categorie.titre }}</a>
-		</h3>
 
-		<h4>{{ livre.prix }}
-			€</h4>
-		<hr>
-	{% endfor %}
-{% endblock %}
+					<a href="#" class="btn btn-primary">Ajouter au panier</a>
+				</div>
+			</div>
+		{% endfor %}
+	{% endblock %}
