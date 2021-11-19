@@ -4,47 +4,32 @@
 {% endblock %}
 
 {% block body %}
-	<center>
-		<h1>Livre</h1>
 
-		<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
-			<h1>{{ livre.titre }}</h1>
-		</a>
-		<p>{{ livre.description }}</p>
-		<img src={{ livre.image }} alt="{{ livre.titre }}">
+	<h1>Livre :
+		{{ livre.titre }}</h1>
 
-		<h2>Auteur</h2>
-		<h2>
-			<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
-				{{ livre.auteur.prenom }}</a>
-		</h2>
-		<h3>
-			<a href="{{ path('rechercher') }}">Categorie :
-				{{ livre.categorie.titre }}</a>
-		</h3>
-
-		<h4>{{ livre.prix }}
-			€</h4>
-		<h3>Revendeur:</h3>
-		<h4>
-			<a href="{{ path('revendeur_show', {'id': livre.revendeur.id}) }}">{{ livre.revendeur.email }}</a>
-		</h4>
-		<h5>Date de la dernier mise a jour :</h5>
-		<h5>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</h5>
-		<br>
+	<section class="my-4">
+		<div class="d-flex flex-wrap justify-content-around">
+			<div class="card mb-4 text-center" style="width: 18rem;">
+				<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
+				<div class="card-body">
+					<h2 class="card-title">
+						<a href="{{ path('front_auteur_show', {'id' : livre.auteur.id }) }}">{{ livre.auteur.nom }}
+							{{ livre.auteur.prenom }}</a>
+					</h2>
 
 
-		<div>
-			<h3>
-				<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
-			</h3>
-
-			<h3>
-				<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
-			</h3>
-			<h3>
-				<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
-			</h3>
+					<p class="card-text text-justify">{{ livre.description }}</p>
+					<p class="card-text">{{ livre.prix }}
+						€</p>
+					<h5>Revendeur:</h5>
+					<h5>
+						<a href="{{ path('revendeur_show', {'id': livre.revendeur.id}) }}">{{ livre.revendeur.email }}</a>
+					</h5>
+					<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+				</div>
+			</div>
 		</div>
-	</center>
+	</section>
+
 {% endblock %}

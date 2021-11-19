@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Livre;
+use App\Form\PaymentType;
 use App\Repository\LivreRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PanierController extends AbstractController
 {
@@ -32,6 +35,7 @@ class PanierController extends AbstractController
             $totalItem = $item['livre']->getPrix() * $item['quantite'];
             $total += $totalItem;
         }
+        $session->set('total', $total);
         return $this->render('panier/index.html.twig', [
             'items' => $panierWData,
             'total' => $total,

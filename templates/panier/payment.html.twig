@@ -1,0 +1,14 @@
+{% extends 'bases.html.twig' %}
+
+{% block title %}Welcome:)
+{% endblock %}
+
+{% block body %}
+
+	{% block header %}{% endblock %}
+	{% block main %}
+		<h2>Total à payer :
+			{{ totalPanier }}
+			€</h2>
+		{{ form(form) }}{% endblock %}
+	{% endblock %}

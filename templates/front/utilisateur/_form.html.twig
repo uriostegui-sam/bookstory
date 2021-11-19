@@ -1,6 +1,7 @@
-{% extends 'bases.html.twig' %}
+<section class="text-center">
 
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button class="btn btn-primary">{{ button_label|default('Créer compte') }}</button>
+	{{ form_end(form) }}
+</section>

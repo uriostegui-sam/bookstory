@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<a class="btn btn-danger ml-auto" href="{{ path('app_logout') }}">Me deconnecter</a>
 	<h1>Mon Profile :)</h1>
 
 	<h2>Email :
@@ -14,30 +15,79 @@
 		{{ app.user.prenom }}</h3>
 	<br>
 	<h1>Vos livres :</h1>
-
 	{% if app.user.livres.count == 0 %}
 		<p>Vous n'avez pas encore de livre(s) à revendre</p>
 	{% else %}
-		{% for livre in app.user.livres %}
-			<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">
-				<h2>{{ livre.titre }}</h2>
-			</a>
-			<p>{{ livre.description }}</p>
-			<img src={{ livre.image }} alt="{{ livre.titre }}">
+		<section class="my-4">
 
-			<h2>Auteur</h2>
-			<h2>
-				<a href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">{{ livre.auteur.nom }}
-					{{ livre.auteur.prenom }}</a>
-			</h2>
-			<h3>
-				<a href="{{ path('rechercher') }}">Categorie :
-					{{ livre.categorie.titre }}</a>
-			</h3>
+			<div class="d-flex flex-wrap justify-content-around">
 
-			<h4>{{ livre.prix }}
-				€</h4>
-			<hr>
-		{% endfor %}
+				{% for livre in app.user.livres %}
+					<div class="card mb-4 text-center" style="width: 18rem;">
+						<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
+						<div class="card-body">
+
+							<h2 class="card-title">
+								<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
+							</h2>
+							<h3 class="card-text">{{ livre.auteur.nom }}
+								{{ livre.auteur.prenom }}</h3>
+
+							<p class="card-text text-justify">{{ livre.description }}</p>
+							<p class="card-text">{{ livre.prix }}
+								€</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+
+		<br>
+		<h2>
+			<a href="{{ path('command_index') }}">Mes commandes</a>
+		</h2>
+
 	{% endif %}
+
+	<section class="my-4">
+		{% if app.user.commands.count == 0 %}
+			<p>Vous n'avez pas encore acheté de livre(s)</p>
+
+		{% else %}
+			<section class="my-4">
+				{% for command in app.user.commands %}
+					<div class="border border-success">
+						<h3>ID de command :
+							{{ command.id }}</h3>
+						<div class="d-flex flex-wrap justify-content-around ">
+							{% for produit in command.produits %}
+								<div class="card mb-4 text-center" style="width: 18rem;">
+									<div class="card-body">
+										<h2 class="card-title">{{ produit.titre }}</h2>
+										<h3 class="card-text">
+											<a href="{{ path('front_auteur_show', {'id' : produit.auteur.id }) }}">{{ produit.auteur.nom }}
+												{{ produit.auteur.prenom }}</a>
+										</h3>
+
+										<p class="card-text text-justify">{{ produit.description }}</p>
+										<p class="card-text">{{ produit.prix }}
+											€</p>
+									</div>
+								</div>
+
+							{% endfor %}
+						</div>
+						<div class="text-center">
+							<h3>Date de la command</h3>
+							<p>{{ command.dateCommand ? command.dateCommand|date('Y-m-d H:i:s') : '' }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</section>
+
+		{% endif %}
+	</section>
+
+	<a href="{{ path('front_livre_new') }}" class="btn btn-info btn-lg btn-block">Vendre mes livres 📚</a>
+	<hr>
 {% endblock %}

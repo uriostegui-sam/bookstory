@@ -7,3 +7,19 @@ h2,
 h3 {
   text-align: center;
 }
+
+.logo {
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  margin: 4px 4px 0px 0px;
+}
+
+img {
+  max-width: 100%;
+}
+
+ol {
+  padding: 0;
+  list-style: none;
+}

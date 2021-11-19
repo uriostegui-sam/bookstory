@@ -95,7 +95,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="front_livre_delete", methods={"POST"})
+     * @Route("/supprimer-livre/{id}", name="front_livre_delete", methods={"POST"})
      */
     public function delete(Request $request, Livre $livre, EntityManagerInterface $entityManager): Response
     {

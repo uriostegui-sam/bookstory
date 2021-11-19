@@ -16,22 +16,20 @@
 				<th>Prix</th>
 				<th>DateCreation</th>
 				<th>DateMiseAJour</th>
-				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for livre in livres %}
 				<tr>
 					<td>{{ livre.id }}</td>
-					<td>{{ livre.titre }}</td>
+					<td>
+						<a href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre }}</a>
+					</td>
 					<td>{{ livre.description }}</td>
-					<img src="{{ path('front_livre_show', {'id': livre.image}) }}" alt="{{ livre.titre }}">
 					<td>{{ livre.prix }}</td>
 					<td>{{ livre.dateCreation ? livre.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('front_livre_show', {'id': livre.id}) }}">show</a>
-					</td>
+					<td></td>
 				</tr>
 			{% else %}
 				<tr>
@@ -40,17 +38,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<div>
-		<h3>
-			<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
-		</h3>
-
-		<h3>
-			<a href="{{ path('rechercher') }} ">Liste de Categories</a>
-		</h3>
-		<h3>
-			<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
-		</h3>
-	</div>
 {% endblock %}

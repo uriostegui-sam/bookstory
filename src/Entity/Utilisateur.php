@@ -52,9 +52,15 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $prenom;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="utilisateur")
+     */
+    private $commands;
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();
+        $this->commands = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,6 +202,36 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->removeElement($command)) {
+            // set the owning side to null (unless already changed)
+            if ($command->getUtilisateur() === $this) {
+                $command->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

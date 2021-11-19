@@ -24,7 +24,7 @@
 					<p class="card-text">{{ livre.prix }}
 						€</p>
 
-					<a href="#" class="btn btn-primary">Ajouter au panier</a>
+					<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
 				</div>
 			</div>
 		{% endfor %}

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LivreRepository;
 use Gedmo\Mapping\Annotation\Timestampable;
@@ -69,6 +71,16 @@ class Livre
      * @Timestampable(on="update")
      */
     private $dateMiseAJour;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Command::class, mappedBy="produits")
+     */
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -179,6 +191,33 @@ class Livre
     public function setDateMiseAJour(\DateTimeInterface $dateMiseAJour): self
     {
         $this->dateMiseAJour = $dateMiseAJour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->removeElement($command)) {
+            $command->removeProduit($this);
+        }
 
         return $this;
     }

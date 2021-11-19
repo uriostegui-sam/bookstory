@@ -11,21 +11,19 @@
 			<tr>
 				<th>Id</th>
 				<th>Nom</th>
-				<th>Prenom</th>
 				<th>Description</th>
-				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for auteur in auteurs %}
 				<tr>
 					<td>{{ auteur.id }}</td>
-					<td>{{ auteur.nom }}</td>
-					<td>{{ auteur.prenom }}</td>
-					<td>{{ auteur.description }}</td>
 					<td>
-						<a href="{{ path('front_auteur_show', {'id': auteur.id}) }}">show</a>
+						<a href="{{ path('front_auteur_show', {'id': auteur.id}) }}">{{ auteur.nom }}
+							{{ auteur.prenom }}</a>
 					</td>
+
+					<td>{{ auteur.description }}</td>
 				</tr>
 			{% else %}
 				<tr>
@@ -34,17 +32,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<div>
-		<h3>
-			<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
-		</h3>
-
-		<h3>
-			<a href="{{ path('rechercher') }} ">Liste de Categories</a>
-		</h3>
-		<h3>
-			<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
-		</h3>
-	</div>
 {% endblock %}

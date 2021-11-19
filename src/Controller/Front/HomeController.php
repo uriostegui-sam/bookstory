@@ -38,6 +38,9 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         $livres = $livreRepository->findCriteria($form->getData());
 
-        return $this->render('front/livre/recherche.html.twig', ['form' => $form->createView(), 'livres' => $livres]);
+        return $this->render(
+            'front/livre/recherche.html.twig',
+            ['form' => $form->createView(), 'livres' => $livres]
+        );
     }
 }

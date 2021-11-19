@@ -1,0 +1,46 @@
+{% extends 'bases.html.twig' %}
+
+{% block title %}Command
+{% endblock %}
+
+{% block body %}
+	<h1>Command</h1>
+
+
+	<section class="my-4">
+		{% for command in commands %}
+			<h3>Numéro de command
+				{{ command.id }}</h3>
+			<div class="d-flex flex-wrap justify-content-around">
+				{% for produit in command.produits %}
+					<div class="card mb-4 text-center" style="width: 18rem;">
+						<img class="card-img-top" src="{{ produit.image }}" alt="{{ produit.titre }}">
+						<div class="card-body">
+							<h2 class="card-title">{{ produit.titre }}</h2>
+							<h3 class="card-text">
+								<a href="{{ path('front_auteur_show', {'id' : produit.auteur.id }) }}">{{ produit.auteur.nom }}
+									{{ produit.auteur.prenom }}</a>
+							</h3>
+
+							<p class="card-text text-justify">{{ produit.description }}</p>
+							<p class="card-text">{{ produit.prix }}
+								€</p>
+							<h5>Revendeur:</h5>
+							<h5>
+								<a href="{{ path('revendeur_show', {'id': produit.revendeur.id}) }}">{{ produit.revendeur.email }}</a>
+							</h5>
+							<a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+			<div class="text-center">
+				<h3>Date de Command</h3>
+				<p>{{ command.dateCommand ? command.dateCommand|date('Y-m-d H:i:s') : '' }}</p>
+			</div>
+		{% endfor %}
+	</section>
+
+	<a href="{{ path('command_index') }}">Retourner a mon profile</a>
+{% endblock %}

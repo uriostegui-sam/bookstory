@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\Payment;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

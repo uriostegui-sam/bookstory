@@ -29,7 +29,7 @@
 					<h5>
 						<a href="{{ path('revendeur_show', {'id': livre.revendeur.id}) }}">{{ livre.revendeur.email }}</a>
 					</h5>
-					<a href="#" class="btn btn-primary">Ajouter au panier</a>
+					<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
 				</div>
 			</div>
 		{% endfor %}

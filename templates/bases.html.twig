@@ -19,36 +19,53 @@
 		</title>
 	</head>
 	<body class="container">
+		<header>
+			<div class="d-flex justify-content-end">
+				<div class="mr-auto p-2">
+					<h4>
+						<a href="{{ path('front_home') }} ">Home</a>
+					</h4>
+				</div>
+				<div class="p-2">
+					<h4>
+						<a href="{{ path('rechercher') }} "><img class="logo" src="{{ asset('img/transparency.png') }}" alt=""></a>
+					</h4>
+				</div>
+				<div class="p-2">
+					<h4>
+						<a href="{{ path('utilisateur_profile') }}"><img class="logo" src="{{ asset('img/user.png') }}" alt=""></a>
+					</h4>
+				</div>
+				<div class="p-2">
+					<h4>
+						<a href="{{ path('panier') }} "><img class="logo" src="{{ asset('img/shopping-cart.png') }}" alt=""></a>
+					</h4>
+				</div>
+			</div>
+		</header>
 		{% block body %}
-			<header>
-				{% block header %}{% endblock %}
-			</header>
 			<main>
 				{% block main %}{% endblock %}
 			</main>
 
-			<footer>
-				{% block footer %}
-					<div class="d-flex justify-content-around">
-						<h3>
-							<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
-						</h3>
+		{% endblock %}
+		<br>
+		<footer>
+			<div class="d-flex justify-content-around">
+				<h4>
+					<a href="{{ path('front_home') }} ">Home</a>
+				</h4>
+				<h4>
+					<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
+				</h4>
 
-						<h3>
-							<a href="{{ path('rechercher') }} ">Liste de Categories</a>
-						</h3>
-						<h3>
-							<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
-						</h3>
-
-						<h3>
-							<a href="{{ path('front_home') }} ">Home</a>
-						</h3>
-					</div>
-					<div>
-					{% endblock %}
-				</footer>
-			{% endblock %}
-		</body>
+				<h4>
+					<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+				</h4>
+				<h4>
+					<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+				</h4>
+			</div>
+		</footer>
 	</body>
 </html>

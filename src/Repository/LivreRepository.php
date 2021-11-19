@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\Payment;
 use App\Entity\Livre;
 use App\DTO\SearchLivreCriteria;
 use Doctrine\Persistence\ManagerRegistry;
@@ -75,6 +76,15 @@ class LivreRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function findOneById($id): Livre
+    {
+        return $this->createQueryBuilder('livre')
+            ->andWhere('livre.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Livre[] Returns an array of Livre objects
     //  */
@@ -88,18 +98,6 @@ class LivreRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Livre
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
         ;
     }
     */
