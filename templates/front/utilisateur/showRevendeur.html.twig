@@ -9,26 +9,30 @@
 		{{ revendeur.prenom }}
 		{{ revendeur.nom }}</h1>
 	<h3>{{ revendeur.email }}</h3>
-	<div class="d-flex flex-wrap justify-content-around">
-		{% for livre in revendeur.livres %}
-			<div class="card mb-4 text-center" style="width: 18rem;">
-				<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
-				<div class="card-body">
 
-					<h2 class="card-title">
-						<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
-					</h2>
-					<h3 class="card-text">{{ livre.auteur.nom }}
-						{{ livre.auteur.prenom }}</h3>
+	<section class="my-4">
 
-					<p class="card-text text-justify">{{ livre.description }}</p>
-					<p class="card-text">{{ livre.prix }}
-						€</p>
-					<p class="card-text">{{ livre.categorie.titre }}</p>
+		<div class="d-flex flex-wrap justify-content-around">
+			{% for livre in revendeur.livres %}
+				<div class="card mb-4 text-center" style="width: 18rem;">
+					<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
+					<div class="card-body">
 
+						<h2 class="card-title">
+							<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
+						</h2>
+						<h3 class="card-text">{{ livre.auteur.nom }}
+							{{ livre.auteur.prenom }}</h3>
 
-					<a href="#" class="btn btn-primary">Ajouter au panier</a>
+						<p class="card-text text-justify">{{ livre.description }}</p>
+						<p class="card-text">{{ livre.prix }}
+							€</p>
+						<p class="card-text">{{ livre.categorie.titre }}</p>
+
+						<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		</section>
 	{% endblock %}

@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="front_home")
+     * @Route("/", name="front_home")
      */
     public function index(AuteurRepository $auteurRepository, CategorieRepository $categorieRepository, LivreRepository $livreRepository): Response
     {
