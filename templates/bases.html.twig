@@ -5,67 +5,125 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		{% block stylesheets %}
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			<!-- CSS only -->
+
 			<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+			{{ encore_entry_link_tags('app') }}
+
 		{% endblock %}
 		<title>
 			{% block title %}Rebrary!
 			{% endblock %}
 			{% block javascripts %}
-				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+				<!-- JavaScript Bundle with Popper -->
+				<script src="/build/runtime.js"></script>
+				<script src="/build/app.js"></script>
+				{{ encore_entry_script_tags('app') }}
+
 			{% endblock %}
 		</title>
 	</head>
-	<body class="container">
+	<body>
 		<header>
-			<div class="d-flex justify-content-end">
-				<div class="mr-auto p-2">
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+				<div class="container px-5">
+					<a href="{{ path('front_home') }} "><img class="logo" src="{{ asset('img/logo.png') }}" alt=""></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+
+								<a class="nav-link active" aria-current="page" href="#!">
+									<a href="{{ path('rechercher') }} "><img class="logo" src="{{ asset('img/transparency.png') }}" alt=""></a>
+
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ path('utilisateur_profile') }}" class="nav-link">
+									<button class="btn btn-purple btn-sm">
+										<img class="logo" src="{{ asset('img/user-white.png') }}" alt="">My Profile
+									</button>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ path('panier') }}" class="nav-link">
+									<button class="btn btn-warning btn-sm">
+										<img class="logo" src="{{ asset('img/shopping-cart-white.png') }}" alt="">
+										My Cart
+									</button>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</header>
+		<nav class="navbar navbar-expand-lg bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar scroll</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+					<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Link
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="#">Action</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Another action</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled">Link</a>
+						</li>
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<main class="container"> {% block main %}{% endblock %}
+			</main>
+
+			<br>
+			<footer>
+				<div class="d-flex justify-content-between">
 					<h4>
 						<a href="{{ path('front_home') }} ">Home</a>
 					</h4>
-				</div>
-				<div class="p-2">
 					<h4>
-						<a href="{{ path('rechercher') }} "><img class="logo" src="{{ asset('img/transparency.png') }}" alt=""></a>
+						<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
 					</h4>
-				</div>
-				<div class="p-2">
-					<h4>
-						<a href="{{ path('utilisateur_profile') }}"><img class="logo" src="{{ asset('img/user.png') }}" alt=""></a>
-					</h4>
-				</div>
-				<div class="p-2">
-					<h4>
-						<a href="{{ path('panier') }} "><img class="logo" src="{{ asset('img/shopping-cart.png') }}" alt=""></a>
-					</h4>
-				</div>
-			</div>
-		</header>
-		{% block body %}
-			<main>
-				{% block main %}{% endblock %}
-			</main>
 
-		{% endblock %}
-		<br>
-		<footer>
-			<div class="d-flex justify-content-between">
-				<h4>
-					<a href="{{ path('front_home') }} ">Home</a>
-				</h4>
-				<h4>
-					<a href="{{ path('front_auteur_index') }} ">Liste de Auteurs</a>
-				</h4>
-
-				<h4>
-					<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
-				</h4>
-				<h4>
-					<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
-				</h4>
-			</div>
-		</footer>
-	</body>
-</html>
+					<h4>
+						<a href="{{ path('front_categorie_index') }} ">Liste de Categories</a>
+					</h4>
+					<h4>
+						<a href="{{ path('front_livre_index') }} ">Liste de Livres</a>
+					</h4>
+				</div>
+			</footer>
+		</body>
+	</html>
