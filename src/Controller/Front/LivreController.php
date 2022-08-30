@@ -6,6 +6,7 @@ use App\Entity\Livre;
 use App\Form\Livre1Type;
 use App\Form\LivreARevendreType;
 use App\Repository\LivreRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,17 +20,18 @@ class LivreController extends AbstractController
     /**
      * @Route("/livres/", name="front_livre_index", methods={"GET"})
      */
-    public function index(LivreRepository $livreRepository): Response
+    public function index(LivreRepository $livreRepository, CategorieRepository $categorieRepository): Response
     {
         return $this->render('front/livre/index.html.twig', [
             'livres' => $livreRepository->findAll(),
+            'categories' => $categorieRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("/revendre-livre", name="front_livre_new", methods={"GET", "POST"})
      */
-    public function revendre(Request $request, EntityManagerInterface $entityManager): Response
+    public function revendre(Request $request, EntityManagerInterface $entityManager, CategorieRepository $categorieRepository): Response
     {
         $form = $this->createForm(
             LivreARevendreType::class,
@@ -48,6 +50,7 @@ class LivreController extends AbstractController
         }
 
         return $this->render('front/livre/revendre.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }
@@ -55,9 +58,10 @@ class LivreController extends AbstractController
     /**
      * @Route("/livre/{id}", name="front_livre_show", methods={"GET"})
      */
-    public function show(Livre $livre): Response
+    public function show(Livre $livre, CategorieRepository $categorieRepository): Response
     {
         return $this->render('front/livre/show.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'livre' => $livre,
         ]);
     }
@@ -66,7 +70,7 @@ class LivreController extends AbstractController
      * @Route("/modifier-livres/{id}", name="front_livre_edit")
      * @IsGranted("ROLE_USER")
      */
-    public function edit(int $id, Request $request, LivreRepository $livreRepository, EntityManagerInterface $entityManager): Response
+    public function edit(int $id, Request $request, CategorieRepository $categorieRepository, LivreRepository $livreRepository, EntityManagerInterface $entityManager): Response
     {
         $livre = $livreRepository->find($id);
 
@@ -90,6 +94,7 @@ class LivreController extends AbstractController
         }
 
         return $this->render('front/livre/edit.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

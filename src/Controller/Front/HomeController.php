@@ -32,7 +32,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/rechercher", name="rechercher")
      */
-    public function rechercher(Request $request, LivreRepository $livreRepository): Response
+    public function rechercher(Request $request, LivreRepository $livreRepository, CategorieRepository $categorieRepository): Response
     {
         $form = $this->createForm(SearchLivreCriteriaType::class);
         $form->handleRequest($request);
@@ -40,7 +40,10 @@ class HomeController extends AbstractController
 
         return $this->render(
             'front/livre/recherche.html.twig',
-            ['form' => $form->createView(), 'livres' => $livres]
+            [
+                'form' => $form->createView(), 'livres' => $livres,
+                'categories' => $categorieRepository->findAll(),
+            ]
         );
     }
 }

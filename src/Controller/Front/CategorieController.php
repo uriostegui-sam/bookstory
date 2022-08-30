@@ -23,9 +23,10 @@ class CategorieController extends AbstractController
     /**
      * @Route("/categorie/{id}", name="front_categorie_show", methods={"GET"})
      */
-    public function show(Categorie $categorie): Response
+    public function show(Categorie $categorie, CategorieRepository $categorieRepository): Response
     {
         return $this->render('front/categorie/show.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'categorie' => $categorie,
         ]);
     }

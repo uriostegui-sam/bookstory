@@ -1,5 +1,40 @@
 @import "~bootstrap/scss/bootstrap";
 
+
+$white: #fffdf9;
+
 .bg-purple {
   background-color: $purple-700;
+}
+
+.text-purple{
+  color: $purple-700;
+}
+
+.btn-outline-purple {
+  color: $purple-700;
+  background-color: $purple-100;
+  background-image: none;
+  border-color: $purple-700;
+  &:hover {
+    color: #fff;
+    background-color: $purple-700;
+  }
+}
+
+.input-purple {
+  border-color: $purple-700;
+}
+
+
+body, .bg-white {
+  background-color: $white
+}
+
+.icons {
+  width: 2.5rem;
+}
+
+.logo {
+  width: 200px;
 }
