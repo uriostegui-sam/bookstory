@@ -4,13 +4,15 @@
 $white: #fffdf9;
 
 .bg-purple {
-  background-color: $purple-700;
+  background-color: #efebf5;
 }
 
-.text-purple{
+a:hover, .text-purple-700{
   color: $purple-700;
 }
-
+.text-purple-500 {
+  color: $purple-500;
+}
 .btn-outline-purple {
   color: $purple-700;
   background-color: $purple-100;
@@ -19,13 +21,13 @@ $white: #fffdf9;
   &:hover {
     color: #fff;
     background-color: $purple-700;
+    border-color: $purple-700;
   }
 }
 
 .input-purple {
   border-color: $purple-700;
 }
-
 
 body, .bg-white {
   background-color: $white
@@ -37,4 +39,8 @@ body, .bg-white {
 
 .logo {
   width: 200px;
+}
+
+.border-purple {  
+  border-top: 1px solid $purple-700;
 }
