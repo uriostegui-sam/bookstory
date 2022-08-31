@@ -16,8 +16,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="front_home")
      */
-    public function index(AuteurRepository $auteurRepository, CategorieRepository $categorieRepository, LivreRepository $livreRepository): Response
-    {
+    public function index(
+        AuteurRepository $auteurRepository,
+        CategorieRepository $categorieRepository,
+        LivreRepository $livreRepository
+    ): Response {
         $dernierLivres = $livreRepository->findLast();
         $dernierCategories = $categorieRepository->findLast();
         $dernierAuteurs = $auteurRepository->findLast();
@@ -32,8 +35,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/rechercher", name="rechercher")
      */
-    public function rechercher(Request $request, LivreRepository $livreRepository, CategorieRepository $categorieRepository): Response
-    {
+    public function rechercher(
+        Request $request,
+        LivreRepository $livreRepository,
+        CategorieRepository $categorieRepository
+    ): Response {
         $form = $this->createForm(SearchLivreCriteriaType::class);
         $form->handleRequest($request);
         $livres = $livreRepository->findCriteria($form->getData());

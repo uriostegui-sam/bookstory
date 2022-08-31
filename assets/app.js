@@ -8,6 +8,10 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+// const $ = require('jquery');
+
+// import hello from './js/hello.js';
+
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
