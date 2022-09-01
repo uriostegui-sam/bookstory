@@ -1,5 +1,6 @@
 {% extends 'bases.html.twig' %}
 
+
 {% block title %}Welcome:)
 {% endblock %}
 
@@ -36,23 +37,7 @@
 								<h3 class="text-purple-700">Coup de coeur</h3>
 								<div class="py-4">
 									{% for livre in livres|slice(0,1) %}
-										<div class="card card-carousel">
-											<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">
-												<img src="{{ livre.image }}" class="card-img-top pb-1" alt="couverture du livre: {{ livre.titre }}"></a>
-											<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-outline-purple mx-1">Ajouter au panier</a>
-											<div class="card-body text-center">
-												<h5 class="card-title fw-bolder">
-													<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre|capitalize }}</a>
-												</h5>
-												<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">
-													<p class="card-text fst-italic">Auteur:
-														{{ livre.auteur.nom }}
-														{{ livre.auteur.prenom }}</p>
-												</a>
-												<p class="card-text fw-bold">{{ livre.prix }}
-													€</p>
-											</div>
-										</div>
+										{% include 'cardBase.html.twig' %}
 									{% endfor %}
 								</div>
 							</div>
@@ -63,69 +48,21 @@
 										<div class="carousel-item active">
 											<div class="cards-wrapper">
 												{% for livre in livres|slice(1,3) %}
-													<div class="card card-carousel">
-														<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">
-															<img src="{{ livre.image }}" class="card-img-top pb-1" alt="couverture du livre: {{ livre.titre }}"></a>
-														<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-outline-purple mx-1">Ajouter au panier</a>
-														<div class="card-body text-center">
-															<h5 class="card-title fw-bolder">
-																<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre|capitalize }}</a>
-															</h5>
-															<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">
-																<p class="card-text fst-italic">Auteur:
-																	{{ livre.auteur.nom }}
-																	{{ livre.auteur.prenom }}</p>
-															</a>
-															<p class="card-text fw-bold">{{ livre.prix }}
-																€</p>
-														</div>
-													</div>
+													{% include 'cardBase.html.twig' %}
 												{% endfor %}
 											</div>
 										</div>
 										<div class="carousel-item">
 											<div class="cards-wrapper">
 												{% for livre in livres[4:3] %}
-													<div class="card card-carousel">
-														<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">
-															<img src="{{ livre.image }}" class="card-img-top pb-1" alt="couverture du livre: {{ livre.titre }}"></a>
-														<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-outline-purple mx-1">Ajouter au panier</a>
-														<div class="card-body text-center">
-															<h5 class="card-title fw-bolder">
-																<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre|capitalize }}</a>
-															</h5>
-															<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">
-																<p class="card-text fst-italic">Auteur:
-																	{{ livre.auteur.nom }}
-																	{{ livre.auteur.prenom }}</p>
-															</a>
-															<p class="card-text fw-bold">{{ livre.prix }}
-																€</p>
-														</div>
-													</div>
+													{% include 'cardBase.html.twig' %}
 												{% endfor %}
 											</div>
 										</div>
 										<div class="carousel-item">
 											<div class="cards-wrapper">
 												{% for livre in livres|slice(7,3) %}
-													<div class="card card-carousel">
-														<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">
-															<img src="{{ livre.image }}" class="card-img-top pb-1" alt="couverture du livre: {{ livre.titre }}"></a>
-														<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-outline-purple mx-1">Ajouter au panier</a>
-														<div class="card-body text-center">
-															<h5 class="card-title fw-bolder">
-																<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre|capitalize }}</a>
-															</h5>
-															<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">
-																<p class="card-text fst-italic">Auteur:
-																	{{ livre.auteur.nom }}
-																	{{ livre.auteur.prenom }}</p>
-															</a>
-															<p class="card-text fw-bold">{{ livre.prix }}
-																€</p>
-														</div>
-													</div>
+													{% include 'cardBase.html.twig' %}
 												{% endfor %}
 											</div>
 										</div>

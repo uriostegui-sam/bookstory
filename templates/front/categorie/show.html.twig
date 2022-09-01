@@ -1,31 +1,18 @@
 {% extends 'bases.html.twig' %}
 
-{% block title %}Categorie
+{% block title %}
+	{{ categorie.titre }}
 {% endblock %}
 
-{% block body %}
-
-
-	<h1>Categorie :
+{% block main %}
+	<h1 class="px-4 py-5 pb-2 border-bottom">Categorie :
 		{{ categorie.titre }}</h1>
-	<div class="d-flex flex-wrap justify-content-around">
+
+	<div class="d-flex flex-wrap justify-content-around g-4 py-5">
 		{% for livre in categorie.livres %}
-			<div class="card mb-4 text-center" style="width: 18rem;">
-				<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
-				<div class="card-body">
+			<div class="mb-4 text-center" style="width: 18rem;">
+				{% include 'cardBase.html.twig' %}
 
-					<h2 class="card-title">
-						<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
-					</h2>
-					<h3 class="card-text">{{ livre.auteur.nom }}
-						{{ livre.auteur.prenom }}</h3>
-
-					<p class="card-text text-justify">{{ livre.description }}</p>
-					<p class="card-text">{{ livre.prix }}
-						€</p>
-
-					<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
-				</div>
 			</div>
 		{% endfor %}
 	</div>
