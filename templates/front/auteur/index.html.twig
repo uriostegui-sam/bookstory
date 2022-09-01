@@ -3,33 +3,35 @@
 {% block title %}Auteur index
 {% endblock %}
 
-{% block body %}
-	<h1>Auteur index</h1>
+{% block main %}
+	<div class="container px-4 py-5">
+		<h1 class="border-bottom">Toutes les auteurs</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Nom</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
+		<div class="row g-4 pb-5 m-4">
+
 			{% for auteur in auteurs %}
-				<tr>
-					<td>{{ auteur.id }}</td>
-					<td>
-						<a href="{{ path('front_auteur_show', {'id': auteur.id}) }}">{{ auteur.nom }}
-							{{ auteur.prenom }}</a>
-					</td>
-
-					<td>{{ auteur.description }}</td>
-				</tr>
+				<div class="col-lg-3 col-sm-6 rounded-circle">
+					<div class="m-4">
+						<a href="{{ path('front_auteur_show', {'id': auteur.id}) }}">
+							<div class="ratio ratio-1x1 rounded-circle overflow-hidden">
+								<img src="{{ asset('img/authors/'~ auteur.id ~'.jpg') }}" class="card-img-top pb-1 img-cover" alt="photo de {{ auteur.prenom }}">
+							</div>
+						</a>
+						<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': auteur.id}) }}">
+							<h2>{{ auteur.nom }}
+								{{ auteur.prenom }}</h2>
+						</a>
+						<p>{{ auteur.description }}</p>
+					</div>
+				</div>
 			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
+				<h3>no records found</h3>
 			{% endfor %}
-		</tbody>
-	</table>
+		</div>
+		<div class="d-flex justify-content-center">
+			{% do auteurs.setPageRange(3) %}
+			{{ knp_pagination_render(auteurs, '/pagination.html.twig') }}
+		</div>
+	</div>
+
 {% endblock %}

@@ -1,5 +1,11 @@
-@import "~bootstrap/scss/bootstrap";
+$pagination-active-bg: #432874;
+$pagination-color: #432874;
+$pagination-hover-bg: #e2d9f3;
+$pagination-border-color:#e2d9f3;
+$pagination-hover-color: #2c1a4d;
 
+
+@import "~bootstrap/scss/bootstrap";
 
 $white: #fffdf9;
 
@@ -164,4 +170,19 @@ body, .bg-white {
   h2{
     text-shadow: rgb(0, 0, 0) 0px 0 5px;
   }
+}
+
+.featurette{
+  align-items: center;
+}
+
+.img-cover{
+  object-fit: cover;
+  object-position: center;
+}
+
+nav#pagination-purple >nav.pagination li.active>span.page-link {
+  background-color: $purple-100;
+  border-color: $purple-100;
+  z-index: 3;
 }
