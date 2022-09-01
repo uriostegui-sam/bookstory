@@ -3,31 +3,24 @@
 {% block title %}Categorie index
 {% endblock %}
 
-{% block body %}
-	<h1>Categorie index</h1>
+{% block main %}
+	<div class="container px-4 py-5" id="custom-cards">
+		<h1 class="pb-2 border-bottom">Toutes les categories</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Titre</th>
-			</tr>
-		</thead>
-		<tbody>
+		<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
 			{% for categorie in categories %}
-				<tr>
-					<td>{{ categorie.id }}</td>
-					<td>
-						<a href="{{ path('front_categorie_show', {'id': categorie.id}) }}">{{ categorie.titre }}</a>
-					</td>
-					<td></td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="3">no records found</td>
-				</tr>
+				<a class="text-decoration-none" href="{{ path('front_categorie_show', {'id': categorie.id}) }}">
+					<div class="col h-100">
+						<div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url( {{asset('img/categories/' ~ categorie.id ~ '.jpg') }});">
+							<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 justify-content-end">
+								<h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ categorie.titre }}</h2>
+							</div>
+						</div>
+					</div>
+				</a>
 			{% endfor %}
-		</tbody>
-	</table>
+		</div>
+
+	</div>
 
 {% endblock %}

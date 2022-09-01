@@ -153,8 +153,15 @@ body, .bg-white {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  h1{
-    text-shadow: rgb(255, 255, 255) 0px 0 5px;
-  }
+ 
  }
+}
+
+.card-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  h2{
+    text-shadow: rgb(0, 0, 0) 0px 0 5px;
+  }
 }
