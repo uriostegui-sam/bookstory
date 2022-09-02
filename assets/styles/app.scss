@@ -4,6 +4,7 @@ $pagination-hover-bg: #e2d9f3;
 $pagination-border-color:#e2d9f3;
 $pagination-hover-color: #2c1a4d;
 
+$primary: #432874;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -181,8 +182,11 @@ body, .bg-white {
   object-position: center;
 }
 
-nav#pagination-purple >nav.pagination li.active>span.page-link {
-  background-color: $purple-100;
-  border-color: $purple-100;
-  z-index: 3;
+#search_livre_criteria{
+  label {
+    text-align: left;
+  }
+  &__token {
+    text-align: center;
+  }
 }

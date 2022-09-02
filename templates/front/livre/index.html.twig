@@ -3,39 +3,20 @@
 {% block title %}Livre index
 {% endblock %}
 
-{% block body %}
-	<h1>Livre index</h1>
+{% block main %}
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Image</th>
-				<th>Prix</th>
-				<th>DateCreation</th>
-				<th>DateMiseAJour</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for livre in livres %}
-				<tr>
-					<td>{{ livre.id }}</td>
-					<td>
-						<a href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre }}</a>
-					</td>
-					<td>{{ livre.description }}</td>
-					<td>{{ livre.prix }}</td>
-					<td>{{ livre.dateCreation ? livre.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ livre.dateMiseAJour ? livre.dateMiseAJour|date('Y-m-d H:i:s') : '' }}</td>
-					<td></td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="8">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+
+	<h1 class="px-4 py-5 pb-2 border-bottom">Tous les livres</h1>
+
+	<div class="d-flex flex-wrap justify-content-around g-4 py-5">
+		{% for livre in livres %}
+			<div class="mb-4 text-center" style="width: 18rem;">
+				{% include 'cardBase.html.twig' %}
+			</div>
+		{% endfor %}
+	</div>
+	<div class="d-flex justify-content-center">
+		{% do livres.setPageRange(3) %}
+		{{ knp_pagination_render(livres, '/pagination.html.twig') }}
+	</div>
 {% endblock %}

@@ -8,6 +8,7 @@ use App\Form\LivreARevendreType;
 use App\Repository\LivreRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,10 +21,22 @@ class LivreController extends AbstractController
     /**
      * @Route("/livres/", name="front_livre_index", methods={"GET"})
      */
-    public function index(LivreRepository $livreRepository, CategorieRepository $categorieRepository): Response
-    {
+    public function index(
+        LivreRepository $livreRepository,
+        CategorieRepository $categorieRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        $data = $livreRepository->findAll();
+        $livres = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            9
+        );
+
         return $this->render('front/livre/index.html.twig', [
-            'livres' => $livreRepository->findAll(),
+            'livres' => $livres,
             'categories' => $categorieRepository->findAll(),
         ]);
     }

@@ -1,38 +1,28 @@
 {% extends 'bases.html.twig' %}
 
-{% block title %}Livre index
+{% block title %}Chercher
 {% endblock %}
 
 {% block main %}
-	<div class="d-flex justify-content-around my-4">
 
+	<div class="text-center my-4">
 		{{ form(form)}}
 		</div>
 
-
-		<div class="d-flex flex-wrap justify-content-around">
-			{% for livre in livres %}
-				<div class="card mb-4 text-center" style="width: 18rem;">
-					<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
-					<div class="card-body">
-
-						<h2 class="card-title">
-							<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
-						</h2>
-						<h3 class="card-text">{{ livre.auteur.nom }}
-							{{ livre.auteur.prenom }}</h3>
-
-						<p class="card-text text-justify">{{ livre.description }}</p>
-						<p class="card-text">{{ livre.prix }}
-							€</p>
-						<h5>Revendeur:</h5>
-						<h5>
-							<a href="{{ path('revendeur_show', {'id': livre.revendeur.id}) }}">{{ livre.revendeur.email }}</a>
-						</h5>
-						<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+		{% if livres | length > 0 %}
+			<div class="d-flex flex-wrap justify-content-around g-4 py-5">
+				{% for livre in livres %}
+					<div class="mb-4 text-center" style="width: 18rem;">
+						{% include 'cardBase.html.twig' %}
 					</div>
-				</div>
-			{% endfor %}
-		</div>
+				{% endfor %}
+			</div>
+		{% else %}
 
+			<div class="text-center my-4">
+				<h1 class="text-purple-700">Malheureusement, votre recherche n'a abouti à aucun résultat.
+					<span class="text-purple-500">Voulez-vous réessayer ?</span>
+				</h1>
+			</div>
+		{% endif %}
 	{% endblock %}
