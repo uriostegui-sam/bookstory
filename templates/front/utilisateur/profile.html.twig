@@ -3,20 +3,18 @@
 {% block title %}Utilisateur index
 {% endblock %}
 
-{% block body %}
-	<a class="btn btn-danger ml-auto" href="{{ path('app_logout') }}">Me deconnecter</a>
-	<h1>Mon Profile :)</h1>
+{% block main %}
 
-	<h2>Email :
-		{{ app.user.email }}</h2>
-	<h3>Nom :
-		{{ app.user.nom }}</h3>
-	<h3>Prenom :
-		{{ app.user.prenom }}</h3>
-	<br>
-	<h1>Vos livres :</h1>
+	<div class="d-flex justify-content-end mt-3">
+		<a class="btn btn-danger ml-auto" href="{{ path('app_logout') }}">Me deconnecter</a>
+	</div>
+	<h1 class="px-4 pb-2 border-bottom">Welcome
+		{{ app.user.prenom }}
+		{{ app.user.nom }}</h1>
+
+
 	{% if app.user.livres.count == 0 %}
-		<p>Vous n'avez pas encore de livre(s) à revendre</p>
+		<h3 class="my-5">Vous n'avez pas encore de livre(s) à revendre</h3>
 	{% else %}
 		<section class="my-4">
 
@@ -24,19 +22,7 @@
 
 				{% for livre in app.user.livres %}
 					<div class="card mb-4 text-center" style="width: 18rem;">
-						<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
-						<div class="card-body">
-
-							<h2 class="card-title">
-								<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
-							</h2>
-							<h3 class="card-text">{{ livre.auteur.nom }}
-								{{ livre.auteur.prenom }}</h3>
-
-							<p class="card-text text-justify">{{ livre.description }}</p>
-							<p class="card-text">{{ livre.prix }}
-								€</p>
-						</div>
+						{% include 'cardBase.html.twig' %}
 					</div>
 				{% endfor %}
 			</div>
@@ -51,7 +37,7 @@
 
 	<section class="my-4">
 		{% if app.user.commands.count == 0 %}
-			<p>Vous n'avez pas encore acheté de livre(s)</p>
+			<h3 class="my-5">Vous n'avez pas encore acheté de livre(s)</h3>
 
 		{% else %}
 			<section class="my-4">
@@ -77,7 +63,7 @@
 
 							{% endfor %}
 						</div>
-						<div class="text-center">
+						<div class="text-center mb-4">
 							<h3>Date de la command</h3>
 							<p>{{ command.dateCommand ? command.dateCommand|date('Y-m-d H:i:s') : '' }}</p>
 						</div>
@@ -87,7 +73,10 @@
 
 		{% endif %}
 	</section>
-
-	<a href="{{ path('front_livre_new') }}" class="btn btn-info btn-lg btn-block">Vendre mes livres 📚</a>
-	<hr>
+	<div class="text-center my-4">
+		<a href="{{ path('front_livre_new') }}" class="btn btn-outline-purple mx-1 p-3">
+			<h4>Vendre un livre 📚
+			</h4>
+		</a>
+	</div>
 {% endblock %}

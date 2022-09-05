@@ -3,9 +3,11 @@
 {% block title %}New Utilisateur
 {% endblock %}
 
-{% block body %}
-	<h1>Create new Utilisateur</h1>
+{% block main %}
+	<h1 class="px-4 py-5 pb-2 border-bottom">Create new Utilisateur</h1>
 
-	{{ include('front/utilisateur/_form.html.twig') }}
+	<div class="text-center my-4">
+		{{ include('front/utilisateur/_form.html.twig') }}
+	</div>
 
 {% endblock %}

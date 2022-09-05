@@ -3,36 +3,23 @@
 {% block title %}Revendeur
 {% endblock %}
 
-{% block body %}
-
-	<h1>Profile revendeur :
-		{{ revendeur.prenom }}
-		{{ revendeur.nom }}</h1>
-	<h3>{{ revendeur.email }}</h3>
+{% block main %}
+	<div class="text-center border-bottom mt-3">
+		<h1 class="px-4 pb-2">Profile revendeur :
+			{{ revendeur.prenom }}
+			{{ revendeur.nom }}</h1>
+		<h3>{{ revendeur.email }}</h3>
+	</div>
 
 	<section class="my-4">
 
-		<div class="d-flex flex-wrap justify-content-around">
+		<div class="d-flex justify-content-around">
 			{% for livre in revendeur.livres %}
-				<div class="card mb-4 text-center" style="width: 18rem;">
-					<img class="card-img-top" src="{{ livre.image }}" alt="{{ livre.titre }}">
-					<div class="card-body">
-
-						<h2 class="card-title">
-							<a href="{{ path('front_livre_show', {'id' : livre.id }) }}">{{ livre.titre }}</a>
-						</h2>
-						<h3 class="card-text">{{ livre.auteur.nom }}
-							{{ livre.auteur.prenom }}</h3>
-
-						<p class="card-text text-justify">{{ livre.description }}</p>
-						<p class="card-text">{{ livre.prix }}
-							€</p>
-						<p class="card-text">{{ livre.categorie.titre }}</p>
-
-						<a href="{{ path('panier_add', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>
-
-					</div>
+				<div class="d-flex flex-column text-center">
+					<h5 class="card-text">{{ livre.categorie.titre }}</h5>
+					{% include 'cardBase.html.twig' %}
 				</div>
+
 			{% endfor %}
 		</section>
 	{% endblock %}

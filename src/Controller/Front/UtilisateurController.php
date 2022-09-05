@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,21 +19,27 @@ class UtilisateurController extends AbstractController
      * @Route("/mon-profile", name="utilisateur_profile")
      * @IsGranted("ROLE_USER")
      */
-    public function profile(): Response
-    {
-        return $this->render('front/utilisateur/profile.html.twig');
+    public function profile(
+        CategorieRepository $categorieRepository
+    ): Response {
+        return $this->render('front/utilisateur/profile.html.twig', [
+            'categories' => $categorieRepository->findAll(),
+        ]);
     }
 
     /**
      * @Route("/revendeur/{id}", name="revendeur_show", methods={"GET"})
      */
-    public function showRevendeur(Utilisateur $revendeur): Response
-    {
+    public function showRevendeur(
+        CategorieRepository $categorieRepository,
+        Utilisateur $revendeur
+    ): Response {
         if ($this->getUser() && $this->getUser()->getEmail() === $revendeur->getEmail()) {
             return $this->redirectToRoute('app_front_user_profile');
         }
 
         return $this->render('front/utilisateur/showRevendeur.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'revendeur' => $revendeur,
         ]);
     }
@@ -40,8 +47,12 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/new", name="utilisateur_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasherInterface): Response
-    {
+    public function new(
+        CategorieRepository $categorieRepository,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $userPasswordHasherInterface
+    ): Response {
         $utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
@@ -54,10 +65,11 @@ class UtilisateurController extends AbstractController
             $entityManager->persist($utilisateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('/home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('front_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/utilisateur/new.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'utilisateur' => $utilisateur,
             'form' => $form,
         ]);
