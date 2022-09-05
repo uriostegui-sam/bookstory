@@ -3,12 +3,9 @@
 {% block title %}Welcome:)
 {% endblock %}
 
-{% block body %}
 
-	{% block header %}{% endblock %}
-	{% block main %}
-		<h2>Total à payer :
-			{{ totalPanier }}
-			€</h2>
-		{{ form(form) }}{% endblock %}
-	{% endblock %}
+{% block main %}
+	<h2 class="my-4">Total à payer :
+		{{ totalPanier }}
+		€</h2>
+	{{ form(form) }}{% endblock %}

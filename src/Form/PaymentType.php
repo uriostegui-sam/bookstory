@@ -18,22 +18,22 @@ class PaymentType extends AbstractType
     {
         $builder
             ->add('titulaire', TextType::class, [
-                'label' => 'Titulaire de la carte :',
+                'label' => 'Titulaire de la carte',
             ])
             ->add('email', EmailType::class, [
-                'label' => 'E-mail :'
+                'label' => 'E-mail'
             ])
             ->add('pays', TextType::class, [
-                'label' => 'Pays :',
+                'label' => 'Pays',
             ])
             ->add('numCarte', IntegerType::class, [
-                'label' => 'Numéro de la carte :'
+                'label' => 'Numéro de la carte'
             ])
             ->add('expiration', DateType::class, [
-                'label' => "Date d'expiration :",
+                'label' => "Date d'expiration",
             ])
             ->add('cryptogramme', IntegerType::class, [
-                'label' => 'Criptogramme :'
+                'label' => 'Criptogramme'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Payer',

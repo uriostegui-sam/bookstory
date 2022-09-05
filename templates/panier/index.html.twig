@@ -1,6 +1,6 @@
 {% extends 'bases.html.twig' %}
 
-{% block title %}Welcome:)
+{% block title %}Panier
 {% endblock %}
 
 {% block body %}
@@ -24,7 +24,7 @@
 				<tbody>
 					{% for item in items %}
 						<tr>
-							<td>{{ item.livre.titre}}</td>
+							<td>{{ item.livre.titre|capitalize}}</td>
 							<td>{{ item.livre.prix}}</td>
 							<td>{{ item.quantite}}</td>
 							<td>{{ item.livre.prix * item.quantite}}</td>
