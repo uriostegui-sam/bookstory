@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Auteur{% endblock %}
+{% block title %}Modifier Auteur
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Auteur</h1>
+{% block main %}
+	<div class="d-flex mt-5 justify-content-between">
+		<a class="btn btn-outline-primary" href="{{ path('admin_auteur_index') }}">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewbox="0 0 16 16">
+				<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+			</svg>
+			Retourner à la liste</a>
+		{{ include('admin/auteur/_delete_form.html.twig') }}
+	</div>
+	<h1 class="px-4 pb-2 border-bottom">Edit
+		{{ auteur.nom }}
+		{{ auteur.prenom }}</h1>
 
-    {{ include('admin/auteur/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('admin_auteur_index') }}">back to list</a>
-
-    {{ include('admin/auteur/_delete_form.html.twig') }}
+	{{ include('admin/auteur/_form.html.twig', {'button_label': 'Modifier'}) }}
 {% endblock %}
