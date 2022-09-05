@@ -17,12 +17,32 @@
 		<h3 class="my-5">Vous n'avez pas encore de livre(s) à revendre</h3>
 	{% else %}
 		<section class="my-4">
-
+			<h2>
+				Livres à vendre
+			</h2>
 			<div class="d-flex flex-wrap justify-content-around">
 
 				{% for livre in app.user.livres %}
-					<div class="card mb-4 text-center" style="width: 18rem;">
-						{% include 'cardBase.html.twig' %}
+					<div class="card mb-4 text-center" style="width: 12rem;">
+						<div class="card">
+							<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">
+								<img src="{{ livre.image }}" class="card-img-top pb-1" alt="couverture du livre: {{ livre.titre }}"></a>
+							<div class="card-body text-center">
+								<h5 class="card-title fw-bolder">
+									<a class="text-decoration-none text-dark" href="{{ path('front_livre_show', {'id': livre.id}) }}">{{ livre.titre|capitalize }}</a>
+								</h5>
+								<a class="text-decoration-none text-dark" href="{{ path('front_auteur_show', {'id': livre.auteur.id}) }}">
+									<p class="card-text fst-italic">Auteur:
+										{{ livre.auteur.nom }}
+										{{ livre.auteur.prenom }}</p>
+								</a>
+								<p class="card-text fw-bold">{{ livre.prix }}
+									€</p>
+								<p class="card-text">{{ livre.categorie.titre }}</p>
+								<a href="{{ path('front_livre_edit', {'id': livre.id}) }}" class="btn btn-outline-purple mx-1 p-3">
+									Modifier l'info</a>
+							</div>
+						</div>
 					</div>
 				{% endfor %}
 			</div>
@@ -35,12 +55,12 @@
 
 	{% endif %}
 
-	<section class="my-4">
+	<section class="my-4 border-bottom">
 		{% if app.user.commands.count == 0 %}
 			<h3 class="my-5">Vous n'avez pas encore acheté de livre(s)</h3>
 
 		{% else %}
-			<section class="my-4">
+			<div class="my-4">
 				{% for command in app.user.commands %}
 					<div class="border border-success">
 						<h3>ID de command :
@@ -69,7 +89,7 @@
 						</div>
 					</div>
 				{% endfor %}
-			</section>
+			</div>
 
 		{% endif %}
 	</section>

@@ -3,16 +3,13 @@
 {% block title %}Command
 {% endblock %}
 
-{% block body %}
-	<h1>Mes commandes :)</h1>
+{% block main %}
+	<h1 class="my-4">Commandes de
+		{{ app.user.prenom }}
+		{{ app.user.nom }}</h1>
 
 	<h2>Email :
 		{{ app.user.email }}</h2>
-	<h3>Nom :
-		{{ app.user.nom }}</h3>
-	<h3>Prenom :
-		{{ app.user.prenom }}</h3>
-	<br>
 
 	<section class="my-4">
 		{% if app.user.commands.count == 0 %}
