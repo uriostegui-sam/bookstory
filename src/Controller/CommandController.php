@@ -7,6 +7,7 @@ use App\Form\CommandType;
 use App\Form\PaymentType;
 use App\Repository\LivreRepository;
 use App\Repository\CommandRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +22,12 @@ class CommandController extends AbstractController
     /**
      * @Route("/command", name="command_index", methods={"GET"})
      */
-    public function index(CommandRepository $commandRepository): Response
-    {
+    public function index(
+        CategorieRepository $categorieRepository,
+        CommandRepository $commandRepository
+    ): Response {
         return $this->render('command/index.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'commands' => $commandRepository->findAll(),
         ]);
     }
@@ -34,6 +38,8 @@ class CommandController extends AbstractController
     public function new(
         EntityManagerInterface $entityManager,
         SessionInterface $sessionInterface,
+        CategorieRepository $categorieRepository,
+
         LivreRepository $livreRepository,
         Security $security
     ): Response {
@@ -54,19 +60,27 @@ class CommandController extends AbstractController
         $entityManager->flush();
         $sessionInterface->set('panier', []);
 
-        return $this->redirectToRoute('utilisateur_profile', ['command', $command], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('utilisateur_profile', [
+            'categories' => $categorieRepository->findAll(),
+            'command', $command
+        ], Response::HTTP_SEE_OTHER);
     }
 
     /**
      * @Route("/command/{id}", name="command_show", methods={"GET"})
      */
-    public function show(Command $command, CommandRepository $commandRepository, Security $security): Response
-    {
+    public function show(
+        Command $command,
+        CategorieRepository $categorieRepository,
+        CommandRepository $commandRepository,
+        Security $security
+    ): Response {
         $user = $security->getUser();
 
         $commands = $commandRepository->findAllByUser($user);
 
         return $this->render('command/show.html.twig', [
+            'categories' => $categorieRepository->findAll(),
             'commands' => $commands,
         ]);
     }
@@ -75,6 +89,7 @@ class CommandController extends AbstractController
      * @Route("/payment", name="payment")
      */
     public function payment(
+        CategorieRepository $categorieRepository,
         Request $request,
         SessionInterface $sessionInterface
     ): Response {
@@ -89,6 +104,12 @@ class CommandController extends AbstractController
                 'total' => $form->getData(),
             ]);
         }
-        return $this->render('panier/payment.html.twig', ['form' => $form->createView(), 'totalPanier' => $totalPanier]);
+        return $this->render(
+            'panier/payment.html.twig',
+            [
+                'categories' => $categorieRepository->findAll(),
+                'form' => $form->createView(), 'totalPanier' => $totalPanier
+            ]
+        );
     }
 }

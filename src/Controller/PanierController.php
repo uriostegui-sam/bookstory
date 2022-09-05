@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Livre;
 use App\Form\PaymentType;
+use App\Repository\CategorieRepository;
 use App\Repository\LivreRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ class PanierController extends AbstractController
     /**
      * @Route("/panier", name="panier")
      */
-    public function index(SessionInterface $session, LivreRepository $livreRepository): Response
+    public function index(SessionInterface $session, CategorieRepository $categorieRepository, LivreRepository $livreRepository): Response
     {
         $panier = $session->get('panier', []);
         $panierWData = [];
@@ -39,6 +40,7 @@ class PanierController extends AbstractController
         return $this->render('panier/index.html.twig', [
             'items' => $panierWData,
             'total' => $total,
+            'categories' => $categorieRepository->findAll(),
         ]);
     }
 
