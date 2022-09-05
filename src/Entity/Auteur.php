@@ -39,6 +39,10 @@ class Auteur
      */
     private $livres;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
     public function __construct()
     {
         $this->livres = new ArrayCollection();

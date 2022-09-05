@@ -29,6 +29,11 @@ class Categorie
      */
     private $livres;
 
+    public function __toString()
+    {
+        return $this->titre;
+    }
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();

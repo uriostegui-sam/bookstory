@@ -15,13 +15,10 @@ class LivreType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('image')
-            ->add('dateCreation')
-            ->add('dateMiseAJour')
             ->add('prix')
             ->add('categorie')
             ->add('auteur')
-            ->add('revendeur')
-        ;
+            ->add('revendeur');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

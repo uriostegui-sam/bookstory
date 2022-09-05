@@ -57,6 +57,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $commands;
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();
