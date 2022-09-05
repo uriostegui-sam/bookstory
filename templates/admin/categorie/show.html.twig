@@ -1,26 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie{% endblock %}
+{% block title %}Categorie
+{% endblock %}
 
-{% block body %}
-    <h1>Categorie</h1>
+{% block main %}
+	<a class="btn btn-outline-primary mt-5" href="{{ path('admin_categorie_index') }}">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewbox="0 0 16 16">
+			<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+		</svg>
+		Retour à la liste</a>
+	<h1 class="px-4  pb-2 border-bottom">Categorie</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categorie.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ categorie.titre }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table mt-5">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ categorie.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ categorie.titre }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('admin_categorie_index') }}">back to list</a>
+	<div class="d-flex justify-content-around">
+		<a class="btn btn-outline-purple" href="{{ path('admin_categorie_edit', {'id': categorie.id}) }}">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
+				<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+			</svg>
+			Modifier</a>
+	</div>
 
-    <a href="{{ path('admin_categorie_edit', {'id': categorie.id}) }}">edit</a>
 
-    {{ include('admin/categorie/_delete_form.html.twig') }}
 {% endblock %}
