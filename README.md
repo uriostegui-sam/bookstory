@@ -11,10 +11,9 @@ git clone https://github.com/samyyuv/lib-shop.git
 cd lib-shop
 composer install
 *customize your .env file*
-symfony server:start
 php bin/console doctrine:database:create
 php bin/console hautelook:fixtures:load
-exit
+symfony server:start
 ```
 The project is ready to see it ✅
 
