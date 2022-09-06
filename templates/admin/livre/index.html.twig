@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Livre index
+{% block title %}Livres
 {% endblock %}
 
 {% block main %}
@@ -32,8 +32,8 @@
 					<td>{{ livre.prix }}
 						€</td>
 					<td>
-						<a href="{{ path('admin_livre_show', {'id': livre.id}) }}">show</a>
-						<a href="{{ path('admin_livre_edit', {'id': livre.id}) }}">edit</a>
+						<a href="{{ path('admin_livre_show', {'id': livre.id}) }}">montrer</a>
+						<a href="{{ path('admin_livre_edit', {'id': livre.id}) }}">modifier</a>
 					</td>
 				</tr>
 			{% else %}

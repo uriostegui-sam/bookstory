@@ -7,11 +7,15 @@
 
 	<div class="d-flex justify-content-end mt-3">
 		<a class="btn btn-danger ml-auto" href="{{ path('app_logout') }}">Me deconnecter</a>
+		{% if is_granted("ROLE_ADMIN") %}
+			<a class="btn btn-warning ms-5 " href="{{ path('app_admin_admin') }}">
+				<h5>ADMIN PAGE</h5>
+			</a>
+		{% endif %}
 	</div>
-	<h1 class="px-4 pb-2 border-bottom">Welcome
+	<h1 class="px-4 pb-2 border-bottom">Bienvenue
 		{{ app.user.prenom }}
 		{{ app.user.nom }}</h1>
-
 
 	{% if app.user.livres.count == 0 %}
 		<h3 class="my-5">Vous n'avez pas encore de livre(s) à revendre</h3>
