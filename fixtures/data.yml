@@ -18,7 +18,7 @@ App\Entity\Utilisateur:
     prenom: "Sam"
     email: "admin@mail.com"
     roles: ["ROLE_ADMIN"]
-    password: \$2y\$13\$ew/AwqL1kVZDJpLw79C6p.bKKWVnvpVpSHbgfgY1va3pKA2nJuKgW
+    password: $2y$10$95OsqPGApH1VOv23wLuXpOcauHy5lR/raKTKvL0T1jKHzPd5pCX1O
 
 App\Entity\Categorie:
   categorie1:
