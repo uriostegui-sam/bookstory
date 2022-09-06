@@ -6,10 +6,11 @@ use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/categorie")
@@ -19,10 +20,21 @@ class CategorieController extends AbstractController
     /**
      * @Route("/", name="admin_categorie_index", methods={"GET"})
      */
-    public function index(CategorieRepository $categorieRepository): Response
-    {
+    public function index(
+        CategorieRepository $categorieRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        $data = $categorieRepository->findAll();
+        $categories = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            15
+        );
+
         return $this->render('admin/categorie/index.html.twig', [
-            'categories' => $categorieRepository->findAll(),
+            'categories' => $categories
         ]);
     }
 
@@ -83,7 +95,7 @@ class CategorieController extends AbstractController
      */
     public function delete(Request $request, Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->request->get('_token'))) {
             $entityManager->remove($categorie);
             $entityManager->flush();
         }

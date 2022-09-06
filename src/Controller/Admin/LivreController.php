@@ -6,10 +6,11 @@ use App\Entity\Livre;
 use App\Form\LivreType;
 use App\Repository\LivreRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/livre")
@@ -19,10 +20,19 @@ class LivreController extends AbstractController
     /**
      * @Route("/", name="admin_livre_index", methods={"GET"})
      */
-    public function index(LivreRepository $livreRepository): Response
-    {
+    public function index(
+        LivreRepository $livreRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $data = $livreRepository->findAll();
+        $livres = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            15
+        );
         return $this->render('admin/livre/index.html.twig', [
-            'livres' => $livreRepository->findAll(),
+            'livres' => $livres,
         ]);
     }
 
@@ -83,7 +93,7 @@ class LivreController extends AbstractController
      */
     public function delete(Request $request, Livre $livre, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $livre->getId(), $request->request->get('_token'))) {
             $entityManager->remove($livre);
             $entityManager->flush();
         }

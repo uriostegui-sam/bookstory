@@ -43,5 +43,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	<div class="d-flex justify-content-center mb-5">
+		{% do livres.setPageRange(3) %}
+		{{ knp_pagination_render(livres, '/pagination.html.twig') }}
+	</div>
 
 {% endblock %}
